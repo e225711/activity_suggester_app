@@ -23,13 +23,13 @@
 1. このリポジトリをローカルマシンにクローンします：
 
 ```
-git clone https://github.com/your_username/activity-search.git
+git clone git@github.com:e225711/activity_suggester_app.git
 ```
 
 2. プロジェクトディレクトリに移動します：
 
 ```
-cd activity-search
+cd activity_suggester_app
 ```
 
 3. 必要なgemをインストールします：
