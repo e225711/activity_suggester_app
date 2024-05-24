@@ -1,0 +1,35 @@
+<h1>Activity Search</h1>
+
+  <%= form_tag('/activities/search', method: 'post') do %>
+    <label for="type">Select Activity Type:</label>
+    <%= select_tag 'type', options_for_select(['random', 'education', 'recreational', 'social', 'charity', 'cooking', 'relaxation', 'busywork']) %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+
+  <div id="activity-result">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('form').submit(function(event) {
+        event.preventDefault();
+
+        var formData = $(this).serialize();
+        $.ajax({
+          type: 'POST',
+          url: '/activities/search',
+          data: formData,
+          dataType: 'json',
+          success: function(data) {
+            $('#activity-result').html('<p>Activity: ' + data.activity + '</p>' +
+                                       '<p>Participants: ' + data.participants + '</p>' +
+                                       '<p>Price: ' + data.price + '</p>');
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      });
+    });
+  </script>
